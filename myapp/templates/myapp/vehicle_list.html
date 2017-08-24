@@ -1,0 +1,28 @@
+﻿<html>
+<head>
+  
+</head>
+<body>
+
+<table border="2px">
+<tr>
+<td>Бортовой номер</td>
+<td>Модель</td>
+<td>Максимальная грузоподъёмность</td>
+<td>Текущий вес</td>
+<td>Перегруз,%</td>
+</tr>
+
+{% for vehicle in vehicles %}
+        <tr>
+           <td>{{vehicle.vehicle_number}}</td> 
+            <td>{{vehicle.vehicle_model.model_name}}</td> 
+			<td>{{vehicle.vehicle_model.max_weight}}</td> 
+            <td>{{vehicle.current_weight}}</td> 
+			<td>{{vehicle.vehicle_overweight}}</td> 
+        </tr>
+{% endfor %}
+
+</table>
+</body>
+</html>
