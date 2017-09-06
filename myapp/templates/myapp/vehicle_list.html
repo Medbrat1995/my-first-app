@@ -1,10 +1,22 @@
 ﻿<html>
-<head>
-  
+<head><title></title>
+ {% load static %} 
+ <script defer type="text/javascript" src='{% static "myapp/frontend.js" %}'>
+  </script>
 </head>
 <body>
+<h3>Модель: </h3>
+<form name="form" method="GET" action="vehicle_list">
+<select name="filter">
+<option value="all">Все</option>
+{% for tippermodel in tippermodels %}
+<option  value="{{tippermodel.model_name}}">{{tippermodel.model_name}}</option>
+{% endfor %}
+</select>
+<input type="submit" value="Применить">
+</form>
 
-<table border="2px">
+<table name="table" border="2px">
 <tr>
 <td>Бортовой номер</td>
 <td>Модель</td>
@@ -13,16 +25,19 @@
 <td>Перегруз,%</td>
 </tr>
 
-{% for vehicle in vehicles %}
+{% for vehicle in filtered %}
         <tr>
-           <td>{{vehicle.vehicle_number}}</td> 
-            <td>{{vehicle.vehicle_model.model_name}}</td> 
-			<td>{{vehicle.vehicle_model.max_weight}}</td> 
-            <td>{{vehicle.current_weight}}</td> 
-			<td>{{vehicle.vehicle_overweight}}</td> 
+           <td>{{vehicle.number}}</td> 
+            <td>{{vehicle.model.model_name}}</td> 
+			<td class="maxweight">{{vehicle.model.max_weight}}</td> 
+            <td class="currentweight">{{vehicle.current_weight}}</td> 
+			<td class="overweight"></td>
+			
         </tr>
 {% endfor %}
 
-</table>
+
+
+  </table>
 </body>
 </html>
